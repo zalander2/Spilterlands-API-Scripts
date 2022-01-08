@@ -1,0 +1,1 @@
+# Card collection to csv-file script
