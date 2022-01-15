@@ -43,11 +43,11 @@ foreach ($card in $cardCollection)
         if ($cardSaleGroup -eq $null)
         {
             $cardSaleGroup = ($cardsForSale | where { ($_.card_detail_id -eq $card.card_detail_id) -and ($_.gold -eq $card.gold) });
-            $lowPriceBcx = $cardSaleGroup.low_price_bcx * $card.xp;
+            $lowPriceBcx = $cardSaleGroup.low_price_bcx * ($card.xp -eq 0 ? 1 : $card.xp);
         }
         else 
         {
-            $lowPriceBcx = $card.level -gt 1 ? $cardSaleGroup.low_price_bcx : $cardSaleGroup.low_price_bcx * $card.xp;
+            $lowPriceBcx = $card.level -gt 1 ? $cardSaleGroup.low_price_bcx : $cardSaleGroup.low_price_bcx * ($card.xp -eq 0 ? 1 : $card.xp);
         }
 
         $cardArray += [PSCustomObject]@{ 
